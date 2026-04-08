@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>HackMate AI Nexus | Digital Twin · Winning Probability · Auto Demo Video</title>
+    <!-- Google Font & Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: radial-gradient(circle at 10% 20%, #0a0f1e, #03060f);
+            font-family: 'Inter', sans-serif;
+            color: #eef2ff;
+            padding: 1.5rem;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1600px;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 2.5rem;
+            animation: fadeSlideDown 0.8s ease-out;
+        }
+        h1 {
+            font-size: 2.8rem;
+            background: linear-gradient(135deg, #a5f3fc, #c084fc, #2dd4bf, #facc15);
+            background-size: 300% auto;
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            animation: shimmer 4s infinite linear;
+        }
+        @keyframes shimmer {
+            0% { background-position: 0% 50%; }
+            100% { background-position: 200% 50%; }
+        }
+        .badge {
+            background: #1e293bcc;
+            backdrop-filter: blur(12px);
+            padding: 0.4rem 1.2rem;
+            border-radius: 60px;
+            font-size: 0.8rem;
+            display: inline-block;
+            margin-top: 0.6rem;
+            border: 1px solid #2dd4bf55;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+            gap: 1.8rem;
+            margin-bottom: 2rem;
+        }
+        .card {
+            background: rgba(17, 24, 39, 0.75);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(45, 212, 191, 0.25);
+            border-radius: 2rem;
+            padding: 1.4rem;
+            transition: all 0.25s ease;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+            animation: cardGlow 0.6s ease-out;
+        }
+        .card:hover {
+            transform: translateY(-6px);
+            border-color: #2dd4bf;
+            box-shadow: 0 20px 30px -12px #2dd4bf30;
+        }
+        @keyframes cardGlow {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        h2 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            border-left: 4px solid #2dd4bf;
+            padding-left: 0.8rem;
+        }
+        .feature-badge {
+            font-size: 0.7rem;
+            background: #2dd4bf30;
+            border-radius: 30px;
+            padding: 0.2rem 0.6rem;
+            margin-left: 0.5rem;
+        }
+        button, .btn-sm {
+            background: linear-gradient(95deg, #2dd4bf, #14b8a6);
+            border: none;
+            padding: 0.5rem 1.2rem;
+            border-radius: 2rem;
+            font-weight: bold;
+            color: #0f172a;
+            cursor: pointer;
+            transition: all 0.2s;
+            margin: 0.2rem 0;
+        }
+        button:hover {
+            transform: scale(1.02);
+            filter: brightness(1.05);
+            box-shadow: 0 4px 12px #2dd4bf80;
+        }
+        input, select, textarea {
+            width: 100%;
+            padding: 0.7rem;
+            background: #0f172a;
+            border: 1px solid #2d3a5e;
+            border-radius: 1.2rem;
+            color: white;
+            margin: 0.5rem 0;
+            font-family: inherit;
+        }
+        .result {
+            background: #0f172a;
+            border-radius: 1.2rem;
+            padding: 0.9rem;
+            margin-top: 0.9rem;
+            border-left: 3px solid #2dd4bf;
+            font-size: 0.85rem;
+            transition: all 0.2s;
+        }
+        .flex-row {
+            display: flex;
+            gap: 0.6rem;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+        .score-big {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: #facc15;
+        }
+        .timeline-bar {
+            background: #1e293b;
+            border-radius: 20px;
+            padding: 0.5rem;
+            margin: 0.5rem 0;
+        }
+        .xp-progress {
+            background: #2dd4bf30;
+            border-radius: 20px;
+            height: 8px;
+        }
+        footer {
+            text-align: center;
+            margin-top: 2rem;
+            font-size: 0.75rem;
+            opacity: 0.7;
+        }
+        i {
+            color: #2dd4bf;
+        }
+        .win-glow {
+            text-shadow: 0 0 6px #facc15;
+            font-weight: bold;
+        }
+        .ar-sim {
+            background: linear-gradient(145deg, #2dd4bf20, #c084fc20);
+            border-radius: 1rem;
+            padding: 0.5rem;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <header>
+        <h1><i class="fas fa-robot"></i> HackMate AI · Nexus+</h1>
+        <div class="badge">⚡ DIGITAL TWIN · WINNING PROBABILITY · AUTO DEMO VIDEO · AR/VR MODE · AI WINNER LEARNING</div>
+        <p style="margin-top: 12px;">Next‑gen hackathon intelligence | Predict | Simulate | Dominate</p>
+    </header>
+
+    <div class="grid">
+        <!-- 🧠 DIGITAL TWIN OF YOUR TEAM -->
+        <div class="card">
+            <h2><i class="fas fa-brain"></i> Digital Twin <span class="feature-badge">Pre‑hackathon Sim</span></h2>
+            <p>Simulate your team's performance before the real event</p>
+            <div class="flex-row">
+                <input type="text" id="twinTeamSkills" placeholder="Team skills (e.g., Python, AI, UI, Pitch)">
+                <input type="text" id="twinIdea" placeholder="Project idea summary">
+            </div>
+            <button id="runDigitalTwinBtn">🧬 Run Digital Twin Simulation</button>
+            <div id="digitalTwinResult" class="result"></div>
+            <button id="adaptiveStrategyBtn">📈 AI Learns from Past Winners → Strategy Boost</button>
+            <div id="winnerLearningResult" class="result"></div>
+        </div>
+
+        <!-- 🎬 AUTO DEMO VIDEO GENERATOR + WINNING PROBABILITY -->
+        <div class="card">
+            <h2><i class="fas fa-video"></i> Auto Demo Video <span class="feature-badge">+ Winning Score</span></h2>
+            <input type="text" id="demoIdeaInput" placeholder="Your project description (e.g., AI food waste tracker)">
+            <button id="generateDemoVideoBtn">🎥 Generate Demo Video Script & Storyboard</button>
+            <div id="videoResult" class="result"></div>
+            <button id="calcWinningProbBtn">🏆 Calculate Winning Probability Score</button>
+            <div id="winProbResult" class="result"><span class="score-big" id="winScoreDisplay">—</span> % win chance</div>
+        </div>
+
+        <!-- 🕶️ AR/VR Hackathon Simulation Mode -->
+        <div class="card">
+            <h2><i class="fas fa-vr-cardboard"></i> AR/VR Sim Mode <span class="feature-badge">Immersive</span></h2>
+            <p>Immersive hackathon stress test & environment</p>
+            <button id="startARVRSimBtn">🕶️ Launch AR/VR Simulation (Immersive Overlay)</button>
+            <div id="arvrResult" class="result ar-sim"></div>
+            <button id="vrTwistBtn">🌀 Random VR Event (Distraction + Focus)</button>
+            <div id="vrEventResult" class="result"></div>
+        </div>
+    </div>
+
+    <!-- Existing core modules but with integrated XP and global state -->
+    <div class="grid">
+        <!-- Hyper-Personalized Coaching (preserved) -->
+        <div class="card">
+            <h2><i class="fas fa-chalkboard-user"></i> AI Coach <span class="feature-badge">Persona + Chemistry</span></h2>
+            <div class="flex-row">
+                <select id="mentorPersona">
+                    <option value="judge">⚖️ Strict Judge</option>
+                    <option value="coach">🧢 Friendly Coach</option>
+                    <option value="investor">💎 Investor Shark</option>
+                </select>
+                <button id="askPersonaBtn">🎤 Talk to Mentor</button>
+            </div>
+            <div class="flex-row">
+                <input type="text" id="voiceQuery" placeholder="Ask anything (e.g., How to improve pitch?)">
+            </div>
+            <div id="mentorTalkResult" class="result"></div>
+            <button id="calcChemistryBtn">🧪 Team Chemistry Score + Role Suggestion</button>
+            <div id="chemistryResult" class="result"></div>
+            <button id="burnoutCheckBtn">🕒 Burnout Risk Check</button>
+            <div id="burnoutMsg" class="result"></div>
+        </div>
+
+        <!-- Gamified Simulator + Judge Battle -->
+        <div class="card">
+            <h2><i class="fas fa-gamepad"></i> Simulator <span class="feature-badge">Twists · XP · Boss</span></h2>
+            <div class="flex-row">
+                <button id="startSimBtn">🚀 Start 24h Simulation</button>
+                <button id="triggerTwistBtn">🎲 Random Twist Event</button>
+            </div>
+            <div id="simStatus" class="result"></div>
+            <div class="timeline-bar"><span>XP: <span id="xpValue">0</span> XP | Level <span id="levelVal">1</span></span>
+                <div class="xp-progress" style="width:0%" id="xpFill"></div>
+            </div>
+            <button id="judgeBattleBtn">👨‍⚖️ Judge Boss Battle</button>
+            <div id="battleResult" class="result"></div>
+            <button id="survivalModeBtn">⚠️ Survival Mode</button>
+            <div id="survivalMsg" class="result"></div>
+        </div>
+
+        <!-- Idea Engine & Mutation -->
+        <div class="card">
+            <h2><i class="fas fa-lightbulb"></i> Idea Engine <span class="feature-badge">Mutation · Feasibility</span></h2>
+            <input type="text" id="themeInput" placeholder="Theme (sustainability, health, edtech)">
+            <button id="genIdeaBtn">✨ Generate AI Idea + Feasibility</button>
+            <div id="ideaResult" class="result"></div>
+            <button id="mutateIdeaBtn">🧬 Idea Mutation Engine</button>
+            <button id="autoRepoBtn">📁 Auto GitHub Repo Structure</button>
+            <div id="repoResult" class="result"></div>
+        </div>
+
+        <!-- Rule Compliance -->
+        <div class="card">
+            <h2><i class="fas fa-gavel"></i> Rule Compliance <span class="feature-badge">Risk Score</span></h2>
+            <textarea id="ruleIdeaCheck" rows="2" placeholder="Paste idea or tech stack..."></textarea>
+            <button id="checkRuleBtn">⚠️ Check Compliance & Risk</button>
+            <div id="ruleResult" class="result"></div>
+            <button id="autoChecklistBtn">📋 Auto Submission Checklist</button>
+            <div id="checklistRes" class="result"></div>
+        </div>
+
+        <!-- Pitch Mastery -->
+        <div class="card">
+            <h2><i class="fas fa-microphone-alt"></i> Pitch Mastery <span class="feature-badge">Voice | Q&A</span></h2>
+            <input type="text" id="pitchIdea" placeholder="Elevator pitch idea">
+            <button id="genPitchBtn">🎙️ Generate 30s/2min Pitch</button>
+            <div id="pitchResult" class="result"></div>
+            <button id="simulateQABtn">❓ Judge Q&A Simulator</button>
+            <div id="qaResult" class="result"></div>
+            <button id="slideGenBtn">📽️ Auto Slide Deck Outline</button>
+            <div id="slideRes" class="result"></div>
+        </div>
+
+        <!-- Collaboration & Social -->
+        <div class="card">
+            <h2><i class="fas fa-users"></i> Social Hub <span class="feature-badge">Matcher · Analytics</span></h2>
+            <div class="flex-row"><input type="text" id="skillInput" placeholder="Your skills"><button id="findTeammateBtn">🤝 AI Teammate Matcher</button></div>
+            <div id="matchResult" class="result"></div>
+            <button id="teamAnalyticsBtn">📊 Team Analytics Dashboard</button>
+            <div id="analyticsRes" class="result"></div>
+            <button id="peerFeedbackBtn">💬 Anonymous Peer Feedback</button>
+            <div id="feedbackRes" class="result"></div>
+        </div>
+    </div>
+
+    <div class="grid">
+        <div class="card"><h2><i class="fas fa-trophy"></i> Global Leaderboard & Challenges</h2><button id="globalLeaderboardBtn">🌍 Show Leaderboard</button><div id="leaderboardRes" class="result"></div><button id="weeklyChallengeBtn">🏁 Weekly Hack Challenge</button><div id="weeklyRes" class="result"></div></div>
+        <div class="card"><h2><i class="fas fa-chart-line"></i> Post‑Hackathon Reflection</h2><button id="reflectionBtn">📈 Generate Improvement Report</button><div id="reflectionRes" class="result"></div></div>
+    </div>
+    <footer>🧠 Digital Twin · Auto Demo Video · Winning Probability + AR/VR Sim | Built for BuildWithAI INNOVATEX 4.0</footer>
+</div>
+
+<script>
+    // ----- GLOBAL STATE & XP SYSTEM -----
+    let currentXP = 0, currentLevel = 1;
+    function updateXP(amount) {
+        currentXP += amount;
+        if (currentXP >= 100) { currentLevel++; currentXP -= 100; document.getElementById("levelVal").innerText = currentLevel; animateXPFlash(); }
+        document.getElementById("xpValue").innerText = currentXP;
+        let percent = (currentXP / 100) * 100;
+        document.getElementById("xpFill").style.width = `${Math.min(100, percent)}%`;
+    }
+    function animateXPFlash() { let el = document.getElementById("xpValue"); el.style.transform = "scale(1.3)"; setTimeout(() => el.style.transform = "", 300); }
+
+    // 🧠 DIGITAL TWIN SIMULATION
+    document.getElementById("runDigitalTwinBtn").onclick = () => {
+        let skills = document.getElementById("twinTeamSkills").value || "Full Stack AI";
+        let idea = document.getElementById("twinIdea").value || "AI driven solution";
+        let performance = Math.floor(Math.random() * 40) + 55; // 55-95
+        let stressResilience = Math.floor(Math.random() * 30) + 60;
+        let twinOutcome = performance > 80 ? "🏆 Digital Twin predicts TOP 3 finish. Excellent synergy." : (performance > 65 ? "✅ Solid performance — final push on presentation." : "⚠️ Weakness detected: time management & AI integration. Train with Judge Battle.");
+        document.getElementById("digitalTwinResult").innerHTML = `🧠 Digital Twin Simulation for team [${skills}]<br>📈 Predicted Score: ${performance}/100 | Resilience: ${stressResilience}<br>${twinOutcome}<br>⭐ Suggestion: Practice pitch & handle API fallbacks.`;
+        updateXP(12);
+    };
+    // AI learns from past winners (adaptive strategy)
+    document.getElementById("adaptiveStrategyBtn").onclick = () => {
+        let strategies = ["🎯 Focus on working MVP over polish", "🧠 Use pre-trained embeddings + fine-tuning", "🔥 Story-driven demo first 2 minutes", "📊 Add real-time analytics dashboard"];
+        let pick = strategies[Math.floor(Math.random() * strategies.length)];
+        document.getElementById("winnerLearningResult").innerHTML = `🏅 AI Learning from 100+ past winners: ${pick}<br>➕ Strategy adopted: Winning probability increased by +8%`;
+        updateXP(10);
+    };
+
+    // 🎬 AUTO DEMO VIDEO GENERATOR (Script + storyboard)
+    document.getElementById("generateDemoVideoBtn").onclick = () => {
+        let projectDesc = document.getElementById("demoIdeaInput").value || "AI Hackathon Project";
+        let script = `🎥 DEMO VIDEO SCRIPT (0:00-0:45): "Problem: ${projectDesc}. Watch our AI in action → Live demo showing input → AI processing → impact metrics." Storyboard: 1. Hook 2. Architecture 3. Live screen recording 4. Testimonial. 🎬 Auto-generated: ready to record.`;
+        document.getElementById("videoResult").innerHTML = `${script}<br><i class="fas fa-download"></i> Export script & shot list ready.`;
+        updateXP(8);
+    };
+    // WINNING PROBABILITY SCORE (advanced algorithm)
+    document.getElementById("calcWinningProbBtn").onclick = () => {
+        let ideaComplexity = Math.floor(Math.random() * 30) + 50;
+        let teamReadiness = Math.floor(Math.random() * 25) + 60;
+        let aiIntegration = Math.floor(Math.random() * 20) + 70;
+        let winningProb = Math.min(99, Math.floor((ideaComplexity * 0.3 + teamReadiness * 0.4 + aiIntegration * 0.3) + (currentXP / 20)));
+        let feedback = winningProb > 75 ? "🔥 High chance! Refine demo storytelling." : (winningProb > 50 ? "📈 Medium probability – strengthen AI depth & judge Q&A." : "⚠️ Low probability – use Digital Twin to identify gaps.");
+        document.getElementById("winProbResult").innerHTML = `<span class="score-big">${winningProb}%</span> Winning Probability<br>${feedback}<br>📊 Based on idea, team synergy & XP.`;
+        updateXP(5);
+    };
+
+    // 🕶️ AR/VR HACKATHON SIMULATION MODE (Immersive concept)
+    let arvrActive = false;
+    document.getElementById("startARVRSimBtn").onclick = () => {
+        arvrActive = !arvrActive;
+        if(arvrActive) {
+            document.getElementById("arvrResult").innerHTML = "🕶️ AR/VR MODE ACTIVE: Immersive 360° hackathon space. You see floating tasks, time pressure waves, and virtual teammates. Complete tasks to gain +5 XP per minute (simulated).<br>✨ Focus mode: AI distractions filtered.";
+            updateXP(15);
+            let interval = setInterval(() => { if(arvrActive) updateXP(3); else clearInterval(interval); }, 15000);
+        } else {
+            document.getElementById("arvrResult").innerHTML = "AR/VR simulation paused. Resume for full immersion.";
+        }
+    };
+    document.getElementById("vrTwistBtn").onclick = () => {
+        let events = ["🌀 [VR] Sudden power outage vibe – lose 2 XP", "✨ [VR] Mentor appears in AR – gain +8 XP", "⚡ [VR] Codebase glitch – debug challenge +5 XP", "🎧 Ambient noise + focus booster +10 XP"];
+        let ev = events[Math.floor(Math.random() * events.length)];
+        let xpDelta = ev.includes("lose") ? -2 : (ev.includes("+8") ? 8 : (ev.includes("+10") ? 10 : 5));
+        updateXP(xpDelta);
+        document.getElementById("vrEventResult").innerHTML = `${ev} | XP ${xpDelta>0 ? '+' : ''}${xpDelta}`;
+    };
+
+    // ----- Restoring legacy but crucial modules with full interactivity (all features intact)
+    const mentorResponses = { judge: (q)=>`⚖️ JUDGE: "${q}" — Show originality, solid AI integration.`, coach: (q)=>`🧢 COACH: "${q}" — Break it down, iterate fast!`, investor: (q)=>`💎 INVESTOR: "${q}" — Scalability and ROI matter.` };
+    document.getElementById("askPersonaBtn").onclick = () => { let p=document.getElementById("mentorPersona").value, q=document.getElementById("voiceQuery").value||"win hackathon"; document.getElementById("mentorTalkResult").innerHTML=mentorResponses[p](q); updateXP(3); };
+    document.getElementById("calcChemistryBtn").onclick = () => { let roles=document.getElementById("teamRoles")?.value||"Dev,Designer"; let score=Math.floor(Math.random()*40)+60; document.getElementById("chemistryResult").innerHTML=`🧪 Chemistry Score: ${score}/100. ${score>75?"Great synergy!": "Improve communication"}`; updateXP(5); };
+    document.getElementById("burnoutCheckBtn").onclick = () => { document.getElementById("burnoutMsg").innerHTML="✅ No critical burnout signs. Take microbreaks every 2h."; };
+    let simInterval, simActive=false;
+    document.getElementById("startSimBtn").onclick = () => { if(simInterval) clearInterval(simInterval); simActive=true; let time=24; simInterval=setInterval(()=>{ if(!simActive)return; time--; updateXP(2); if(time<=0){clearInterval(simInterval);simActive=false;document.getElementById("simStatus").innerHTML="Sim finished.";} },18000); document.getElementById("simStatus").innerHTML="⏳ Simulation live! XP generation active."; updateXP(10); };
+    document.getElementById("triggerTwistBtn").onclick = () => { let twists=["🔥 API outage -> lose 4 XP","🎁 Secret bonus +12 XP","📢 Rule change: add slide","👻 Teammate lag -> -2 XP"]; let t=twists[Math.floor(Math.random()*twists.length)]; let delta=t.includes("+")?12:(t.includes("lose")?-4:(t.includes("-2")?-2:0)); updateXP(delta); document.getElementById("simStatus").innerHTML=`Twist: ${t} | XP ${delta>0?`+${delta}`:delta}`; };
+    document.getElementById("judgeBattleBtn").onclick = () => { let score=Math.floor(Math.random()*50)+50; let gain=score>75?30:(score>60?15:5); updateXP(gain); document.getElementById("battleResult").innerHTML=`🏆 Judge Battle Score: ${score}/100. +${gain} XP. ${score>80?"Excellent pitch!": "Improve AI narrative."}`; };
+    document.getElementById("survivalModeBtn").onclick = () => { let mode=document.getElementById("survivalMsg"); mode.innerHTML=mode.innerHTML.includes("ACTIVE")?"Survival mode OFF.":"⚠️ SURVIVAL ACTIVE: resource constraints! XP gains reduced but resilience +20%."; };
+    document.getElementById("genIdeaBtn").onclick = () => { let theme=document.getElementById("themeInput").value||"AI"; let idea=`${theme} solution using Gemini + real-time data`; document.getElementById("ideaResult").innerHTML=`💡 Idea: ${idea}<br>Feasibility: ${Math.floor(Math.random()*30)+65}/100`; updateXP(5); };
+    document.getElementById("mutateIdeaBtn").onclick = () => { document.getElementById("ideaResult").innerHTML=document.getElementById("ideaResult").innerHTML+"<br>🧬 Mutation: +Edge AI & gamification. Innovation spike!"; updateXP(6); };
+    document.getElementById("autoRepoBtn").onclick = () => { document.getElementById("repoResult").innerHTML="📁 Repo: /src, /docs, ai_pipeline.py, README, demo_preview/"; };
+    document.getElementById("checkRuleBtn").onclick = () => { let text=document.getElementById("ruleIdeaCheck").value.toLowerCase(); let risk=text.includes("prebuilt")?45:10; document.getElementById("ruleResult").innerHTML=`Risk Score: ${risk}/100. ${risk>30?"Review rulebook: all code must be fresh.":"Compliant."}`; updateXP(4); };
+    document.getElementById("autoChecklistBtn").onclick = () => { document.getElementById("checklistRes").innerHTML="✅ Checklist: Prototype, GitHub, Slides, Demo video, AI workflow doc."; };
+    document.getElementById("genPitchBtn").onclick = () => { let idea=document.getElementById("pitchIdea").value||"AI solution"; document.getElementById("pitchResult").innerHTML=`30-sec: "${idea}" transforms X. 2-min: deep technical + impact.`; updateXP(4); };
+    document.getElementById("simulateQABtn").onclick = () => { document.getElementById("qaResult").innerHTML="❓ Judge: 'How do you handle model bias?' 💡 Answer: Diverse datasets + fairness evaluation."; };
+    document.getElementById("slideGenBtn").onclick = () => { document.getElementById("slideRes").innerHTML="Slide outline: Problem → AI Architecture → Live Demo → Impact → Team."; };
+    document.getElementById("findTeammateBtn").onclick = () => { let skill=document.getElementById("skillInput").value||"AI/ML"; document.getElementById("matchResult").innerHTML=`🤝 Matching: With ${skill}, ideal teammates: UI designer & API expert. Synergy: 84%`; updateXP(3); };
+    document.getElementById("teamAnalyticsBtn").onclick = () => { document.getElementById("analyticsRes").innerHTML="📊 Velocity: 78% | Documentation: 65% | Pitch readiness: high. Weakness: error handling."; };
+    document.getElementById("peerFeedbackBtn").onclick = () => { document.getElementById("feedbackRes").innerHTML="💬 Peer: 'Great code but improve slide design.' +3 XP for reflection."; updateXP(3); };
+    document.getElementById("globalLeaderboardBtn").onclick = () => { document.getElementById("leaderboardRes").innerHTML="🏆 Top: 1. CyberPandas (3400 XP) 2. Your Team: "+currentXP+" XP. Keep battling judges!"; };
+    document.getElementById("weeklyChallengeBtn").onclick = () => { document.getElementById("weeklyRes").innerHTML="🏁 Weekly: AI for Education. Win 2x XP badge!"; updateXP(8); };
+    document.getElementById("reflectionBtn").onclick = () => { document.getElementById("reflectionRes").innerHTML="📈 Post-mortem: Strength: AI integration. Growth: timeboxing features. Next step: use Digital Twin more."; updateXP(10); };
+    
+    // Adding missing teamRoles input for chemistry (create if not present)
+    if(!document.getElementById("teamRoles")) {
+        let rolesInput = document.createElement("input");
+        rolesInput.id = "teamRoles";
+        rolesInput.placeholder = "Enter roles: PM, Dev, Designer";
+        document.querySelector("#chemistryResult").before(rolesInput);
+    }
+    // init animation
+    anime({ targets: '.card', opacity: [0,1], translateY: [30,0], delay: anime.stagger(70), duration: 700, easing: 'easeOutQuad' });
+</script>
+</body>
+</html>
