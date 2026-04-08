@@ -1,4 +1,4 @@
----
+
 
 # HackMate AI – Interactive Hackathon Companion & Strategy Simulator
 
@@ -107,9 +107,9 @@ All AI APIs and libraries used comply with their respective licenses.
 
 ---
 
-## 📷 Screenshot / Demo (Optional)
+## 📷 Screenshot / Demo 
 
-> Add screenshots of your simulation dashboard, idea generator, or feedback results here.
+> See Source code.
 
 ---
 
